@@ -70,7 +70,7 @@ I'm a Powerfull Group Manager Bot With Cool Modules. feel free to add me to your
 buttons = [
     [
         InlineKeyboardButton(
-            text="Luffy News 🙋‍♂️", url="https://t.me/luffylogs"
+            text="Luffy Logs 🙋‍♂️", url="https://t.me/luffylogs"
         ),
         InlineKeyboardButton(
             text="Support Group 💬", url="https://t.me/Luffysupportchat"
@@ -78,7 +78,7 @@ buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="Source 🗒", url="Github.com/Sadew451"
+            text="Luffy news 🗒", url="https://t.me/luffyupdates"
         ),
         InlineKeyboardButton(
             text="Command Help ❓", callback_data="help_back"
