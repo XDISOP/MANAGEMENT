@@ -65,7 +65,7 @@ RUN apt update && apt upgrade -y && \
 RUN pip3 install --upgrade pip setuptools
 
 # Copy Python Requirements to /root/Natsuki
-RUN git clone -b shiken https://github.com/Sadew451/Natsuki /root/Natsuki
+RUN git clone -b shiken https://github.com/Black-Bulls-Bots/Natsuki -b main /root/Natsuki
 WORKDIR /root/Natsuki
 
 #Copy config file to /root/Natsuki/Natsuki
