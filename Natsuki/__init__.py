@@ -171,6 +171,7 @@ else:
     SPAMWATCH_API = Config.SPAMWATCH_API
     YOUTUBE_API_KEY = Config.YOUTUBE_API_KEY
     INFOPIC = Config.INFOPIC
+    TEMP_DOWNLOAD_DIRECTORY = "./Downloads"
 
     try:
         WHITELIST_CHATS = set(int(x) for x in Config.BL_CHATS or [])
