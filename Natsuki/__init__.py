@@ -104,7 +104,7 @@ if ENV:
             int(x) for x in os.environ.get("WHITELIST_CHATS", "").split()
         )
     except ValueError:
-        raise Exception("Your blacklisted chats list does not contain valid integers.")
+        raise Exception("Your whitelist chats list does not contain valid integers.")
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
@@ -176,6 +176,11 @@ else:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
+        
+    try:
+        BL_CHATS = set(int(x) for x in Config.WHITELIST_CHATS or [])
+    except ValueError:
+        raise Exception("Your whitelist chats list does not contain valid integers.")
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)
