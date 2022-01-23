@@ -9,11 +9,10 @@ from Natsuki import dispatcher
 from Natsuki.modules.disable import DisableAbleCommandHandler
 
 
-@run_async
 def animequotes(update: Update, context: CallbackContext):
     update.effective_message.reply_text(random.choice(animequotesstring.ANIMEQUOTES))
 
 
-ANIMEQUOTES_HANDLER = DisableAbleCommandHandler("animequotes", animequotes)
+ANIMEQUOTES_HANDLER = DisableAbleCommandHandler("animequotes", animequotes, run_async=True)
 
 dispatcher.add_handler(ANIMEQUOTES_HANDLER)

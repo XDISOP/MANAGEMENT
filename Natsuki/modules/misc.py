@@ -35,7 +35,6 @@ from Natsuki.modules.helper_funcs.chat_status import user_admin
 from Natsuki.modules.helper_funcs.filters import CustomFilters
 
 
-@run_async
 def gifid(update: Update, context: CallbackContext):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
@@ -47,7 +46,6 @@ def gifid(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Please reply to a gif to get its ID.")
 
 
-@run_async
 @typing_action
 def lyrics(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -78,7 +76,6 @@ def lyrics(update: Update, context: CallbackContext):
             msg.reply_text(reply)
 
 
-@run_async
 @typing_action
 def github(update, context):
     message = update.effective_message
@@ -141,7 +138,6 @@ def github(update, context):
     )
 
 
-@run_async
 def repo(update, context):
     context.args
     message = update.effective_message
@@ -155,7 +151,6 @@ def repo(update, context):
     )
 
 
-@run_async
 @typing_action
 def paste(update, context):
     args = context.args
@@ -193,7 +188,6 @@ def paste(update, context):
     )
 
 
-@run_async
 @typing_action
 def get_paste_content(update, context):
     args = context.args
@@ -233,7 +227,6 @@ def get_paste_content(update, context):
     )
 
 
-@run_async
 @typing_action
 def gdpr(update, context):
     update.effective_message.reply_text("Deleting identifiable data...")
@@ -276,7 +269,6 @@ Keep in mind that your message <b>MUST</b> contain some text other than just a b
 """
 
 
-@run_async
 @user_admin
 def echo(update: Update, context: CallbackContext):
     args = update.effective_message.text.split(None, 1)
@@ -305,7 +297,6 @@ def markdown_help_sender(update: Update):
     )
 
 
-@run_async
 def markdown_help(update: Update, context: CallbackContext):
     if update.effective_chat.type != "private":
         update.effective_message.reply_text(
@@ -327,7 +318,6 @@ def markdown_help(update: Update, context: CallbackContext):
     markdown_help_sender(update)
 
 
-@run_async
 @typing_action
 def wiki(update, context):
     kueri = re.split(pattern="wiki", string=update.effective_message.text)
@@ -362,7 +352,6 @@ def wiki(update, context):
             )
 
 
-@run_async
 @typing_action
 def ud(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -380,7 +369,6 @@ def ud(update: Update, context: CallbackContext):
     message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
 @typing_action
 def getlink(update, context):
     args = context.args
@@ -409,7 +397,6 @@ def getlink(update, context):
     message.reply_text(links)
 
 
-@run_async
 @typing_action
 def app(update: Update, _):
     message = update.effective_message
@@ -476,7 +463,6 @@ def app(update: Update, _):
     progress_message.delete()
 
 
-@run_async
 @send_action(ChatAction.UPLOAD_PHOTO)
 def rmemes(update, context):
     msg = update.effective_message
@@ -528,7 +514,6 @@ def rmemes(update, context):
         return msg.reply_text(f"Error! {excp.message}")
 
 
-@run_async
 def slist(update, context):
     sfile = "List Of All Staff Users:"
     sfile += f"\n• DEV USER IDs :-  {DEV_USERS}"
@@ -544,7 +529,6 @@ def slist(update, context):
         )
 
 
-@run_async
 def reply_keyboard_remove(update, context):
     reply_keyboard = []
     reply_keyboard.append([ReplyKeyboardRemove(remove_keyboard=True)])
@@ -602,7 +586,6 @@ def fpaste(update, context):
         return
 
 
-@run_async
 def stats(update, context):
     stats = f"┎─⌈ <b>Current {dispatcher.bot.first_name} Stats</b> ⌋\n" + "\n".join(
         [mod.__stats__() for mod in STATS]
@@ -657,30 +640,30 @@ __help__ = """
 
 __mod_name__ = "Miscs"
 
-APP_HANDLER = DisableAbleCommandHandler("app", app)
-LYRICS_HANDLER = DisableAbleCommandHandler("lyrics", lyrics, pass_args=True)
-GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
-ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group)
-MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help)
+APP_HANDLER = DisableAbleCommandHandler("app", app, run_async=True)
+LYRICS_HANDLER = DisableAbleCommandHandler("lyrics", lyrics, pass_args=True, run_async=True)
+GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid, run_async=True)
+ECHO_HANDLER = DisableAbleCommandHandler("echo", echo, filters=Filters.group, run_async=True)
+MD_HELP_HANDLER = CommandHandler("markdownhelp", markdown_help, run_async=True)
 STATS_HANDLER = DisableAbleCommandHandler(
-    "stats", stats, filters=CustomFilters.sudo_filter
+    "stats", stats, filters=CustomFilters.sudo_filter, run_async=True
 )
-GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private)
-WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki)
-UD_HANDLER = DisableAbleCommandHandler("ud", ud)
+GDPR_HANDLER = CommandHandler("gdpr", gdpr, filters=Filters.private, run_async=True)
+WIKI_HANDLER = DisableAbleCommandHandler("wiki", wiki, run_async=True)
+UD_HANDLER = DisableAbleCommandHandler("ud", ud, run_async=True)
 GETLINK_HANDLER = CommandHandler(
-    "getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID)
+    "getlink", getlink, pass_args=True, filters=Filters.user(OWNER_ID), run_async=True
 )
-STAFFLIST_HANDLER = CommandHandler("slist", slist, filters=Filters.user(OWNER_ID))
-REDDIT_MEMES_HANDLER = DisableAbleCommandHandler("rmeme", rmemes)
+STAFFLIST_HANDLER = CommandHandler("slist", slist, filters=Filters.user(OWNER_ID), run_async=True)
+REDDIT_MEMES_HANDLER = DisableAbleCommandHandler("rmeme", rmemes, run_async=True)
 
-GITHUB_HANDLER = DisableAbleCommandHandler("git", github, admin_ok=True)
-REPO_HANDLER = DisableAbleCommandHandler("repo", repo, pass_args=True, admin_ok=True)
-PASTE_HANDLER = DisableAbleCommandHandler("paste", paste, pass_args=True)
+GITHUB_HANDLER = DisableAbleCommandHandler("git", github, admin_ok=True, run_async=True)
+REPO_HANDLER = DisableAbleCommandHandler("repo", repo, pass_args=True, admin_ok=True, run_async=True)
+PASTE_HANDLER = DisableAbleCommandHandler("paste", paste, pass_args=True, run_async=True)
 GET_PASTE_HANDLER = DisableAbleCommandHandler(
-    "getpaste", get_paste_content, pass_args=True
+    "getpaste", get_paste_content, pass_args=True, run_async=True
 )
-FPASTE_HANDLER = CommandHandler("fpaste", fpaste, pass_args=True)
+FPASTE_HANDLER = CommandHandler("fpaste", fpaste, pass_args=True, run_async=True)
 
 
 dispatcher.add_handler(APP_HANDLER)

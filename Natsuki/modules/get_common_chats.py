@@ -11,7 +11,6 @@ from Natsuki.modules.helper_funcs.extraction import extract_user
 from Natsuki.modules.sql.users_sql import get_user_com_chats
 
 
-@run_async
 def get_user_common_chats(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     msg = update.effective_message
@@ -48,7 +47,7 @@ def get_user_common_chats(update: Update, context: CallbackContext):
 
 
 COMMON_CHATS_HANDLER = CommandHandler(
-    "getchats", get_user_common_chats, filters=Filters.user(OWNER_ID)
+    "getchats", get_user_common_chats, filters=Filters.user(OWNER_ID), run_async=True
 )
 
 dispatcher.add_handler(COMMON_CHATS_HANDLER)

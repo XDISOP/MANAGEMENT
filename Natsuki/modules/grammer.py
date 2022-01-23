@@ -41,7 +41,7 @@ def translate(update, context):
         update.effective_message.reply_text(curr_string)
 
 
-TRANSLATE_HANDLER = CommandHandler("t", translate)
+TRANSLATE_HANDLER = CommandHandler("t", translate, run_async=True)
 
 dispatcher.add_handler(TRANSLATE_HANDLER)
 

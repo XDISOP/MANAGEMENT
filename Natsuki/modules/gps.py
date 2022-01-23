@@ -8,7 +8,6 @@ from Natsuki.modules.helper_funcs.chat_status import user_admin
 GMAPS_LOC = "https://maps.googleapis.com/maps/api/geocode/json"
 
 
-@run_async
 @user_admin
 def gps(update, context, *args, **kwargs):
 
@@ -37,7 +36,7 @@ def gps(update, context, *args, **kwargs):
         update.message.reply_text("I can't find that")
 
 
-GPS_HANDLER = CommandHandler("gps", gps)
+GPS_HANDLER = CommandHandler("gps", gps, run_async=True)
 
 dispatcher.add_handler(GPS_HANDLER)
 
