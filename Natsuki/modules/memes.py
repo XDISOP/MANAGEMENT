@@ -13,7 +13,6 @@ from Natsuki import dispatcher
 from Natsuki.modules.disable import DisableAbleCommandHandler
 
 
-@run_async
 def kimtext(update, context):
     message = update.effective_message
     if message.reply_to_message:
@@ -46,7 +45,6 @@ def kimtext(update, context):
     os.remove("kimed{}.jpg".format(randint))
 
 
-@run_async
 def hitlertext(update, context):
     message = update.effective_message
     if message.reply_to_message:
@@ -79,7 +77,6 @@ def hitlertext(update, context):
     os.remove("hitlered{}.jpg".format(randint))
 
 
-@run_async
 def spongemocktext(update, context):
     message = update.effective_message
     if message.reply_to_message:
@@ -112,9 +109,9 @@ def spongemocktext(update, context):
     os.remove("mocked{}.jpg".format(randint))
 
 
-MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True)
-KIM_HANDLER = DisableAbleCommandHandler("kim", kimtext, admin_ok=True)
-HITLER_HANDLER = DisableAbleCommandHandler("hitler", hitlertext, admin_ok=True)
+MOCK_HANDLER = DisableAbleCommandHandler("mock", spongemocktext, admin_ok=True, run_async=True)
+KIM_HANDLER = DisableAbleCommandHandler("kim", kimtext, admin_ok=True, run_async=True)
+HITLER_HANDLER = DisableAbleCommandHandler("hitler", hitlertext, admin_ok=True, run_async=True)
 
 
 dispatcher.add_handler(MOCK_HANDLER)

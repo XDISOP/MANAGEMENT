@@ -21,7 +21,6 @@ from Natsuki.modules.helper_funcs.string_handling import extract_time
 from Natsuki.modules.log_channel import loggable
 
 
-@run_async
 @connection_status
 @bot_admin
 @user_admin
@@ -80,7 +79,6 @@ def mute(update: Update, context: CallbackContext) -> str:
 
 
 # thanks to Sea Halfy git- hyper-ub for smute sban skick
-@run_async
 @connection_status
 @bot_admin
 @user_admin
@@ -130,7 +128,6 @@ def smute(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @connection_status
 @bot_admin
 @user_admin
@@ -192,7 +189,6 @@ def unmute(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -285,7 +281,6 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
     return ""
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -381,11 +376,11 @@ __help__ = """
  If you set Log Channels, you will get logs of Silent mutes. Check *Logger* module to know more about Log Channel.
 """
 
-MUTE_HANDLER = CommandHandler("mute", mute)
-SMUTE_HANDLER = CommandHandler("smute", smute)
-UNMUTE_HANDLER = CommandHandler("unmute", unmute)
-TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute)
-STEMPMUTE_HANDLER = CommandHandler(["stmute", "stempmute"], stemp_mute)
+MUTE_HANDLER = CommandHandler("mute", mute, run_async=True)
+SMUTE_HANDLER = CommandHandler("smute", smute, run_async=True)
+UNMUTE_HANDLER = CommandHandler("unmute", unmute, run_async=True)
+TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, run_async=True)
+STEMPMUTE_HANDLER = CommandHandler(["stmute", "stempmute"], stemp_mute, run_async=True)
 
 dispatcher.add_handler(MUTE_HANDLER)
 dispatcher.add_handler(SMUTE_HANDLER)

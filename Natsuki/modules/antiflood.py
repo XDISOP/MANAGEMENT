@@ -1,3 +1,4 @@
+import re
 import html
 from typing import Optional
 
@@ -28,7 +29,6 @@ from Natsuki.modules.sql import antiflood_sql as sql
 FLOOD_GROUP = 3
 
 
-@run_async
 @loggable
 def check_flood(update, context) -> str:
     user = update.effective_user  # type: Optional[User]
@@ -107,7 +107,6 @@ def check_flood(update, context) -> str:
         )
 
 
-@run_async
 @user_admin_no_reply
 @bot_admin
 def flood_button(update: Update, context: CallbackContext):
@@ -137,7 +136,6 @@ def flood_button(update: Update, context: CallbackContext):
             pass
 
 
-@run_async
 @user_admin
 @loggable
 def set_flood(update, context) -> str:
@@ -233,7 +231,6 @@ def set_flood(update, context) -> str:
     return ""
 
 
-@run_async
 def flood(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -276,7 +273,6 @@ def flood(update, context):
             )
 
 
-@run_async
 @user_admin
 def set_flood_mode(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -414,15 +410,15 @@ will result in restricting that user.
 __mod_name__ = "Antiflood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    Filters.all & ~Filters.status_update & Filters.group, check_flood
+    Filters.all & ~Filters.status_update & Filters.group, check_flood, run_async=True
 )
 SET_FLOOD_HANDLER = CommandHandler(
-    "setflood", set_flood, pass_args=True
+    "setflood", set_flood, pass_args=True, run_async=True
 )  # , filters=Filters.group)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
-    "setfloodmode", set_flood_mode, pass_args=True
+    "setfloodmode", set_flood_mode, pass_args=True, run_async=True
 )  # , filters=Filters.group)
-FLOOD_HANDLER = CommandHandler("flood", flood)  # , filters=Filters.group)
+FLOOD_HANDLER = CommandHandler("flood", flood, run_async=True)  # , filters=Filters.group)
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)

@@ -18,26 +18,22 @@ from Natsuki.modules.helper_funcs.alternate import typing_action
 from Natsuki.modules.helper_funcs.extraction import extract_user
 
 
-@run_async
 @typing_action
 def truth(update, context):
     update.effective_message.reply_text(random.choice(fun.TRUTH))
 
 
-@run_async
 @typing_action
 def dare(update, context):
     update.effective_message.reply_text(random.choice(fun.DARE))
 
 
 # run
-@run_async
 @typing_action
 def runs(update, context):
     update.effective_message.reply_text(random.choice(fun.RUN_STRINGS))
 
 
-@run_async
 @typing_action
 def pat(update: Update, context: CallbackContext):
     bot = context.bot
@@ -79,7 +75,6 @@ def pat(update: Update, context: CallbackContext):
         reply_to.reply_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @typing_action
 def slap(update, context):
     args = context.args
@@ -125,7 +120,6 @@ def slap(update, context):
 
 
 # sanitize a user - by @saitamarobot
-@run_async
 @typing_action
 def sanitize(update: Update, context: CallbackContext):
     message = update.effective_message
@@ -142,7 +136,6 @@ def sanitize(update: Update, context: CallbackContext):
     reply_animation(random.choice(fun.GIFS), caption=f"*Sanitizes {name}*")
 
 
-@run_async
 @typing_action
 def hug(update, context):
     args = context.args
@@ -187,7 +180,6 @@ def hug(update, context):
     reply_text(repl, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
 @typing_action
 def abuse(update, context):
     # reply to correct message
@@ -199,13 +191,11 @@ def abuse(update, context):
     reply_text(random.choice(fun.ABUSE_STRINGS))
 
 
-@run_async
 @typing_action
 def dice(update, context):
     context.bot.sendDice(update.effective_chat.id)
 
 
-@run_async
 @typing_action
 def shrug(update, context):
     # reply to correct message
@@ -217,7 +207,6 @@ def shrug(update, context):
     reply_text(random.choice(fun.SHGS))
 
 
-@run_async
 @typing_action
 def decide(update, context):
     args = update.effective_message.text.split(None, 1)
@@ -230,7 +219,6 @@ def decide(update, context):
         reply_text(random.choice(fun.DECIDE))
 
 
-@run_async
 def yesnowtf(update, context):
     msg = update.effective_message
     chat = update.effective_chat
@@ -247,7 +235,6 @@ def yesnowtf(update, context):
         return
 
 
-@run_async
 @typing_action
 def table(update, context):
     reply_text = (
@@ -258,7 +245,6 @@ def table(update, context):
     reply_text(random.choice(fun.TABLE))
 
 
-@run_async
 @typing_action
 def cri(update, context):
     reply_text = (
@@ -269,7 +255,6 @@ def cri(update, context):
     reply_text(random.choice(fun.CRI))
 
 
-@run_async
 @typing_action
 def recite(update, context):
     reply_text = (
@@ -280,7 +265,6 @@ def recite(update, context):
     reply_text(random.choice(fun.BEING_LOGICAL))
 
 
-@run_async
 def gbun(update, context):
     user = update.effective_user
     chat = update.effective_chat
@@ -291,7 +275,6 @@ def gbun(update, context):
         context.bot.sendMessage(chat.id, (random.choice(fun.GBUN)))
 
 
-@run_async
 def gbam(update, context):
     user = update.effective_user
     chat = update.effective_chat
@@ -319,7 +302,6 @@ def gbam(update, context):
         context.bot.sendMessage(chat.id, gbam, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @typing_action
 def shout(update, context):
     args = context.args
@@ -344,7 +326,6 @@ def shout(update, context):
     return update.effective_message.reply_text(msg, parse_mode="MARKDOWN")
 
 
-@run_async
 @typing_action
 def copypasta(update, context):
     message = update.effective_message
@@ -402,7 +383,6 @@ def copypasta(update, context):
         message.reply_to_message.reply_text(reply_text)
 
 
-@run_async
 @typing_action
 def clapmoji(update, context):
     message = update.effective_message
@@ -415,7 +395,6 @@ def clapmoji(update, context):
         message.reply_to_message.reply_text(reply_text)
 
 
-@run_async
 @typing_action
 def owo(update, context):
     message = update.effective_message
@@ -456,7 +435,6 @@ def owo(update, context):
         message.reply_to_message.reply_text(reply_text)
 
 
-@run_async
 @typing_action
 def stretch(update, context):
     message = update.effective_message
@@ -475,7 +453,6 @@ def stretch(update, context):
         message.reply_to_message.reply_text(reply_text)
 
 
-@run_async
 @typing_action
 def goodnight(update, context):
     message = update.effective_message
@@ -484,7 +461,6 @@ def goodnight(update, context):
     message.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
 @typing_action
 def goodmorning(update, context):
     message = update.effective_message
@@ -535,37 +511,37 @@ All regex filters can be disabled incase u don't want... like: `/disable goodnig
 __mod_name__ = "Memes"
 
 
-PAT_HANDLER = DisableAbleCommandHandler("pat", pat)
-SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout)
-DARE_HANDLER = DisableAbleCommandHandler("dare", dare)
-TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth)
-SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
-SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug)
+PAT_HANDLER = DisableAbleCommandHandler("pat", pat, run_async=True)
+SHOUT_HANDLER = DisableAbleCommandHandler("shout", shout, run_async=True)
+DARE_HANDLER = DisableAbleCommandHandler("dare", dare, run_async=True)
+TRUTH_HANDLER = DisableAbleCommandHandler("truth", truth, run_async=True)
+SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize, run_async=True)
+SHRUG_HANDLER = DisableAbleCommandHandler("shrug", shrug, run_async=True)
 DECIDE_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(Liza|liza)"), decide, friendly="decide"
+    Filters.regex(r"(?i)(Liza|liza)"), decide, friendly="decide", run_async=True
 )
-ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse, pass_args=True)
-RUNS_HANDLER = DisableAbleCommandHandler("runs", runs, pass_args=True)
-SLAP_HANDLER = DisableAbleCommandHandler("slap", slap)
-HUG_HANDLER = DisableAbleCommandHandler("hug", hug)
-GBUN_HANDLER = CommandHandler("gbun", gbun)
-GBAM_HANDLER = CommandHandler("gbam", gbam)
-TABLE_HANDLER = DisableAbleCommandHandler("table", table)
-CRI_HANDLER = DisableAbleCommandHandler("cri", cri)
-PASTA_HANDLER = DisableAbleCommandHandler("pasta", copypasta)
-CLAP_HANDLER = DisableAbleCommandHandler("clap", clapmoji)
-OWO_HANDLER = DisableAbleCommandHandler("owo", owo)
-STRECH_HANDLER = DisableAbleCommandHandler("stretch", stretch)
-RECITE_HANDLER = DisableAbleCommandHandler("recite", recite)
-DICE_HANDLER = DisableAbleCommandHandler("roll", dice)
-YESNOWTF_HANDLER = DisableAbleCommandHandler("decide", yesnowtf)
+ABUSE_HANDLER = DisableAbleCommandHandler("abuse", abuse, pass_args=True, run_async=True)
+RUNS_HANDLER = DisableAbleCommandHandler("runs", runs, pass_args=True, run_async=True)
+SLAP_HANDLER = DisableAbleCommandHandler("slap", slap, run_async=True)
+HUG_HANDLER = DisableAbleCommandHandler("hug", hug, run_async=True)
+GBUN_HANDLER = CommandHandler("gbun", gbun, run_async=True)
+GBAM_HANDLER = CommandHandler("gbam", gbam, run_async=True)
+TABLE_HANDLER = DisableAbleCommandHandler("table", table, run_async=True)
+CRI_HANDLER = DisableAbleCommandHandler("cri", cri, run_async=True)
+PASTA_HANDLER = DisableAbleCommandHandler("pasta", copypasta, run_async=True)
+CLAP_HANDLER = DisableAbleCommandHandler("clap", clapmoji, run_async=True)
+OWO_HANDLER = DisableAbleCommandHandler("owo", owo, run_async=True)
+STRECH_HANDLER = DisableAbleCommandHandler("stretch", stretch, run_async=True)
+RECITE_HANDLER = DisableAbleCommandHandler("recite", recite, run_async=True)
+DICE_HANDLER = DisableAbleCommandHandler("roll", dice, run_async=True)
+YESNOWTF_HANDLER = DisableAbleCommandHandler("decide", yesnowtf, run_async=True)
 GDMORNING_HANDLER = DisableAbleMessageHandler(
     Filters.regex(r"(?i)(goodmorning|good morning)"),
     goodmorning,
-    friendly="goodmorning",
+    friendly="goodmorning", run_async=True
 )
 GDNIGHT_HANDLER = DisableAbleMessageHandler(
-    Filters.regex(r"(?i)(goodnight|good night)"), goodnight, friendly="goodnight"
+    Filters.regex(r"(?i)(goodnight|good night)"), goodnight, friendly="goodnight", run_async=True
 )
 
 

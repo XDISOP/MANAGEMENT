@@ -7,7 +7,6 @@ from Natsuki import dispatcher
 from Natsuki.modules.disable import DisableAbleCommandHandler
 
 
-@run_async
 def totranslate(update: Update, context: CallbackContext):
     msg = update.effective_message
     problem_lang_code = []
@@ -133,7 +132,7 @@ def totranslate(update: Update, context: CallbackContext):
         return
 
 
-TRANSLATE_HANDLER = DisableAbleCommandHandler(["tr", "tl"], totranslate)
+TRANSLATE_HANDLER = DisableAbleCommandHandler(["tr", "tl"], totranslate, run_async=True)
 
 dispatcher.add_handler(TRANSLATE_HANDLER)
 

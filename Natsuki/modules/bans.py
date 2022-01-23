@@ -31,7 +31,6 @@ from Natsuki.modules.helper_funcs.string_handling import extract_time
 from Natsuki.modules.log_channel import gloggable, loggable
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -133,7 +132,6 @@ def ban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -197,7 +195,6 @@ def sban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -292,7 +289,6 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -372,7 +368,6 @@ def stemp_ban(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -433,7 +428,6 @@ def kick(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -481,7 +475,6 @@ def skick(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @bot_admin
 @can_restrict
 def kickme(update: Update, context: CallbackContext):
@@ -497,7 +490,6 @@ def kickme(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Huh? I can't :/")
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -548,7 +540,6 @@ def unban(update: Update, context: CallbackContext) -> str:
     return log
 
 
-@run_async
 @connection_status
 @bot_admin
 @can_restrict
@@ -610,15 +601,15 @@ _NOTE:_
  If you set Log Channels, you will get logs of Silent kick and bans. Check *Logger* module to know more about Log Channel.
 """
 
-BAN_HANDLER = CommandHandler("ban", ban)
-TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban)
-STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban)
-KICK_HANDLER = CommandHandler("kick", kick)
-SKICK_HANDLER = CommandHandler("skick", skick)
-UNBAN_HANDLER = CommandHandler("unban", unban)
-ROAR_HANDLER = CommandHandler("roar", selfunban)
-KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group)
-SBAN_HANDLER = CommandHandler("sban", sban)
+BAN_HANDLER = CommandHandler("ban", ban, run_async=True)
+TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban, run_async=True)
+STEMPBAN_HANDLER = CommandHandler(["stban"], stemp_ban, run_async=True)
+KICK_HANDLER = CommandHandler("kick", kick, run_async=True)
+SKICK_HANDLER = CommandHandler("skick", skick, run_async=True)
+UNBAN_HANDLER = CommandHandler("unban", unban, run_async=True)
+ROAR_HANDLER = CommandHandler("roar", selfunban, run_async=True)
+KICKME_HANDLER = DisableAbleCommandHandler("kickme", kickme, filters=Filters.group, run_async=True)
+SBAN_HANDLER = CommandHandler("sban", sban, run_async=True)
 
 dispatcher.add_handler(BAN_HANDLER)
 dispatcher.add_handler(TEMPBAN_HANDLER)

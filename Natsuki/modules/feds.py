@@ -18,7 +18,6 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    run_async,
 )
 from telegram.utils.helpers import mention_html, mention_markdown
 
@@ -72,7 +71,6 @@ UNFBAN_ERRORS = {
 }
 
 
-@run_async
 def new_fed(update: Update, context: CallbackContext):
     chat = update.effective_chat
     user = update.effective_user
@@ -126,7 +124,6 @@ def new_fed(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def del_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -173,7 +170,6 @@ def del_fed(update: Update, context: CallbackContext):
     )
 
 
-@run_async
 def rename_fed(update, context):
     user = update.effective_user
     msg = update.effective_message
@@ -195,7 +191,6 @@ def rename_fed(update, context):
         msg.reply_text("Only federation owner can do this!")
 
 
-@run_async
 def fed_chat(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -223,7 +218,6 @@ def fed_chat(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 def join_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -286,7 +280,6 @@ def join_fed(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def leave_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -328,7 +321,6 @@ def leave_fed(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Only group creators can use this command!")
 
 
-@run_async
 def user_join_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -392,7 +384,6 @@ def user_join_fed(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Only federation owners can do this!")
 
 
-@run_async
 def user_demote_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -452,7 +443,6 @@ def user_demote_fed(update: Update, context: CallbackContext):
         return
 
 
-@run_async
 def fed_info(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -500,7 +490,6 @@ def fed_info(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 def fed_admin(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -548,7 +537,6 @@ def fed_admin(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 def fed_ban(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -967,7 +955,6 @@ def fed_ban(update: Update, context: CallbackContext):
     #                 "Fedban affected {} chats. ".format(chats_in_fed))
 
 
-@run_async
 def unfban(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -1185,7 +1172,6 @@ def unfban(update: Update, context: CallbackContext):
 	"""
 
 
-@run_async
 def set_frules(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -1242,7 +1228,6 @@ def set_frules(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Please write rules to set this up!")
 
 
-@run_async
 def get_frules(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -1265,7 +1250,6 @@ def get_frules(update: Update, context: CallbackContext):
     update.effective_message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
 
 
-@run_async
 def fed_broadcast(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     msg = update.effective_message
@@ -1327,7 +1311,6 @@ def fed_broadcast(update: Update, context: CallbackContext):
         update.effective_message.reply_text(send_text)
 
 
-@run_async
 def fed_ban_list(update: Update, context: CallbackContext):
     bot, args, chat_data = context.bot, context.args, context.chat_data
     chat = update.effective_chat
@@ -1508,7 +1491,6 @@ def fed_ban_list(update: Update, context: CallbackContext):
             )
 
 
-@run_async
 def fed_notif(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -1543,7 +1525,6 @@ def fed_notif(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def fed_chats(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -1607,7 +1588,6 @@ def fed_chats(update: Update, context: CallbackContext):
             )
 
 
-@run_async
 def fed_import_bans(update: Update, context: CallbackContext):
     bot, chat_data = context.bot, context.chat_data
     chat = update.effective_chat
@@ -1835,7 +1815,6 @@ def fed_import_bans(update: Update, context: CallbackContext):
         send_message(update.effective_message, text)
 
 
-@run_async
 def del_fed_button(update: Update, context: CallbackContext):
     query = update.callback_query
     query.message.chat.id
@@ -1857,7 +1836,6 @@ def del_fed_button(update: Update, context: CallbackContext):
             )
 
 
-@run_async
 def fed_stat_user(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     update.effective_chat
@@ -1966,7 +1944,6 @@ def fed_stat_user(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def set_fed_log(update: Update, context: CallbackContext):
     args = context.args
     chat = update.effective_chat
@@ -2007,7 +1984,6 @@ def set_fed_log(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def unset_fed_log(update: Update, context: CallbackContext):
     args = context.args
     chat = update.effective_chat
@@ -2048,7 +2024,6 @@ def unset_fed_log(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def subs_feds(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -2113,7 +2088,6 @@ def subs_feds(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def unsubs_feds(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -2178,7 +2152,6 @@ def unsubs_feds(update: Update, context: CallbackContext):
         )
 
 
-@run_async
 def get_myfedsubs(update: Update, context: CallbackContext):
     context.args
     chat = update.effective_chat
@@ -2229,7 +2202,6 @@ def get_myfedsubs(update: Update, context: CallbackContext):
         send_message(update.effective_message, listfed, parse_mode="markdown")
 
 
-@run_async
 def get_myfeds_list(update: Update, context: CallbackContext):
     update.effective_chat
     user = update.effective_user
@@ -2270,7 +2242,6 @@ def is_user_fed_owner(fed_id, user_id):
 
 
 # There's no handler for this yet, but updating for v12 in case its used
-@run_async
 def welcome_fed(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     chat = update.effective_chat
@@ -2336,7 +2307,6 @@ def get_chat(chat_id, chat_data):
         return {"status": False, "value": False}
 
 
-@run_async
 def fed_owner_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         """*👑 Fed Owner Only:*
@@ -2355,7 +2325,6 @@ def fed_owner_help(update: Update, context: CallbackContext):
     )
 
 
-@run_async
 def fed_admin_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         """*🔱 Fed Admins:*
@@ -2373,7 +2342,6 @@ def fed_admin_help(update: Update, context: CallbackContext):
     )
 
 
-@run_async
 def fed_user_help(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
         """*🎩 Any user:*
@@ -2400,36 +2368,36 @@ Feds are now divided into 3 sections for your ease.
 
 """
 
-NEW_FED_HANDLER = CommandHandler("newfed", new_fed)
-DEL_FED_HANDLER = CommandHandler("delfed", del_fed)
-RENAME_FED = CommandHandler("renamefed", rename_fed)
-JOIN_FED_HANDLER = CommandHandler("joinfed", join_fed)
-LEAVE_FED_HANDLER = CommandHandler("leavefed", leave_fed)
-PROMOTE_FED_HANDLER = CommandHandler("fpromote", user_join_fed)
-DEMOTE_FED_HANDLER = CommandHandler("fdemote", user_demote_fed)
-INFO_FED_HANDLER = CommandHandler("fedinfo", fed_info)
-BAN_FED_HANDLER = DisableAbleCommandHandler("fban", fed_ban)
-UN_BAN_FED_HANDLER = CommandHandler("unfban", unfban)
-FED_BROADCAST_HANDLER = CommandHandler("fbroadcast", fed_broadcast)
-FED_SET_RULES_HANDLER = CommandHandler("setfrules", set_frules)
-FED_GET_RULES_HANDLER = CommandHandler("frules", get_frules)
-FED_CHAT_HANDLER = CommandHandler("chatfed", fed_chat)
-FED_ADMIN_HANDLER = CommandHandler("fedadmins", fed_admin)
-FED_USERBAN_HANDLER = CommandHandler("fbanlist", fed_ban_list)
-FED_NOTIF_HANDLER = CommandHandler("fednotif", fed_notif)
-FED_CHATLIST_HANDLER = CommandHandler("fedchats", fed_chats)
-FED_IMPORTBAN_HANDLER = CommandHandler("importfbans", fed_import_bans)
-FEDSTAT_USER = DisableAbleCommandHandler(["fedstat", "fbanstat"], fed_stat_user)
-SET_FED_LOG = CommandHandler("setfedlog", set_fed_log)
-UNSET_FED_LOG = CommandHandler("unsetfedlog", unset_fed_log)
-SUBS_FED = CommandHandler("subfed", subs_feds)
-UNSUBS_FED = CommandHandler("unsubfed", unsubs_feds)
-MY_SUB_FED = CommandHandler("fedsubs", get_myfedsubs)
-MY_FEDS_LIST = CommandHandler("myfeds", get_myfeds_list)
-DELETEBTN_FED_HANDLER = CallbackQueryHandler(del_fed_button, pattern=r"rmfed_")
-FED_OWNER_HELP_HANDLER = CommandHandler("fedownerhelp", fed_owner_help)
-FED_ADMIN_HELP_HANDLER = CommandHandler("fedadminhelp", fed_admin_help)
-FED_USER_HELP_HANDLER = CommandHandler("feduserhelp", fed_user_help)
+NEW_FED_HANDLER = CommandHandler("newfed", new_fed, run_async=True)
+DEL_FED_HANDLER = CommandHandler("delfed", del_fed, run_async=True)
+RENAME_FED = CommandHandler("renamefed", rename_fed, run_async=True)
+JOIN_FED_HANDLER = CommandHandler("joinfed", join_fed, run_async=True)
+LEAVE_FED_HANDLER = CommandHandler("leavefed", leave_fed, run_async=True)
+PROMOTE_FED_HANDLER = CommandHandler("fpromote", user_join_fed, run_async=True)
+DEMOTE_FED_HANDLER = CommandHandler("fdemote", user_demote_fed, run_async=True)
+INFO_FED_HANDLER = CommandHandler("fedinfo", fed_info, run_async=True)
+BAN_FED_HANDLER = DisableAbleCommandHandler("fban", fed_ban, run_async=True)
+UN_BAN_FED_HANDLER = CommandHandler("unfban", unfban, run_async=True)
+FED_BROADCAST_HANDLER = CommandHandler("fbroadcast", fed_broadcast, run_async=True)
+FED_SET_RULES_HANDLER = CommandHandler("setfrules", set_frules, run_async=True)
+FED_GET_RULES_HANDLER = CommandHandler("frules", get_frules, run_async=True)
+FED_CHAT_HANDLER = CommandHandler("chatfed", fed_chat, run_async=True)
+FED_ADMIN_HANDLER = CommandHandler("fedadmins", fed_admin, run_async=True)
+FED_USERBAN_HANDLER = CommandHandler("fbanlist", fed_ban_list, run_async=True)
+FED_NOTIF_HANDLER = CommandHandler("fednotif", fed_notif, run_async=True)
+FED_CHATLIST_HANDLER = CommandHandler("fedchats", fed_chats, run_async=True)
+FED_IMPORTBAN_HANDLER = CommandHandler("importfbans", fed_import_bans, run_async=True)
+FEDSTAT_USER = DisableAbleCommandHandler(["fedstat", "fbanstat"], fed_stat_user, run_async=True)
+SET_FED_LOG = CommandHandler("setfedlog", set_fed_log, run_async=True)
+UNSET_FED_LOG = CommandHandler("unsetfedlog", unset_fed_log, run_async=True)
+SUBS_FED = CommandHandler("subfed", subs_feds, run_async=True)
+UNSUBS_FED = CommandHandler("unsubfed", unsubs_feds, run_async=True)
+MY_SUB_FED = CommandHandler("fedsubs", get_myfedsubs, run_async=True)
+MY_FEDS_LIST = CommandHandler("myfeds", get_myfeds_list, run_async=True)
+DELETEBTN_FED_HANDLER = CallbackQueryHandler(del_fed_button, pattern=r"rmfed_", run_async=True)
+FED_OWNER_HELP_HANDLER = CommandHandler("fedownerhelp", fed_owner_help, run_async=True)
+FED_ADMIN_HELP_HANDLER = CommandHandler("fedadminhelp", fed_admin_help, run_async=True)
+FED_USER_HELP_HANDLER = CommandHandler("feduserhelp", fed_user_help, run_async=True)
 
 dispatcher.add_handler(NEW_FED_HANDLER)
 dispatcher.add_handler(DEL_FED_HANDLER)
