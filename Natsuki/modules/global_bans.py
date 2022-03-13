@@ -553,7 +553,7 @@ GBAN_LIST = CommandHandler("gbanlist", gbanlist, run_async=True)
 
 GBAN_STATUS = CommandHandler("antispam", gbanstat, filters=Filters.group)
 
-GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gbank, run_async=True)
+GBAN_ENFORCER = MessageHandler(Filters.all & Filters.group, enforce_gban, run_async=True)
 
 dispatcher.add_handler(GBAN_HANDLER)
 dispatcher.add_handler(UNGBAN_HANDLER)
