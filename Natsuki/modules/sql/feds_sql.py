@@ -1,6 +1,6 @@
 import threading
 
-from sqlalchemy import Boolean, Column, Integer, String, UnicodeText
+from sqlalchemy import Boolean, Column, Integer, String, UnicodeText, BigInteger
 from telegram.error import BadRequest, Unauthorized
 
 from Natsuki import dispatcher
@@ -59,7 +59,7 @@ class BansF(BASE):
 
 class FedsUserSettings(BASE):
     __tablename__ = "feds_settings"
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(BigInteger, primary_key=True)
     should_report = Column(Boolean, default=True)
 
     def __init__(self, user_id):
