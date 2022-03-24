@@ -7,6 +7,7 @@ import spamwatch
 import telegram.ext as tg
 from pyrogram import Client, errors
 from telethon import TelegramClient
+from dotenv import load_dotenv
 
 StartTime = time.time()
 
@@ -20,16 +21,20 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 
 # if version < 3.6, stop bot.
-if sys.version_info[0] < 3 or sys.version_info[1] < 6:
+if sys.version_info[0] < 3 or sys.version_info[1] < 9:
     LOGGER.error(
-        "You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting."
+        "You MUST have a python version of at least 3.9! Multiple features depend on this. Bot quitting."
     )
     quit(1)
+
+load_dotenv()
 
 ENV = bool(os.environ.get("ENV", False))
 
 if ENV:
     TOKEN = os.environ.get("TOKEN", None)
+    API_ID = os.environ.get("API_ID", None)
+    API_HASH = os.environ.get("API_HASH", None)
 
     try:
         OWNER_ID = int(os.environ.get("OWNER_ID", None))
@@ -66,9 +71,7 @@ if ENV:
     URL = os.environ.get("URL", "")  # Does not contain token
     PORT = int(os.environ.get("PORT", 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
-    API_ID = os.environ.get("API_ID", None)
-    API_HASH = os.environ.get("API_HASH", None)
-    BOT_ID = int(os.environ.get("BOT_ID", None))
+
     DB_URI = os.environ.get("DATABASE_URL")
     DONATION_LINK = os.environ.get("DONATION_LINK")
     LOAD = os.environ.get("LOAD", "").split()
@@ -80,24 +83,15 @@ if ENV:
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
-    AI_API_KEY = os.environ.get("AI_API_KEY", None)
     WALL_API = os.environ.get("WALL_API", None)
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
-    YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    REPOSITORY = os.environ.get("REPOSITORY", "")
-    REDIS_URL = os.environ.get("REDIS_URL")
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
-    MONGO_DB_URI = os.environ.get("MONGO_DB_URI")    
-    BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
-    OWNER_ID = os.environ.get("OWNER_ID", None)
-    OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
-    TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
 
     try:
         WHITELIST_CHATS = set(
@@ -164,12 +158,10 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
     CASH_API_KEY = Config.CASH_API_KEY
     TIME_API_KEY = Config.TIME_API_KEY
-    AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     SPAMWATCH_SUPPORT_CHAT = Config.SPAMWATCH_SUPPORT_CHAT
     SPAMWATCH_API = Config.SPAMWATCH_API
-    YOUTUBE_API_KEY = Config.YOUTUBE_API_KEY
     INFOPIC = Config.INFOPIC
     TEMP_DOWNLOAD_DIRECTORY = "./Downloads"
 
