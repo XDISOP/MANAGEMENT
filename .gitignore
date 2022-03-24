@@ -1,7 +1,7 @@
-SaitamaRobot/config.py
-SaitamaRobot/*.session
-SaitamaRobot/*.session-journal
-SaitamaRobot/config.ini
+Natsuki/config.py
+Natsuki/*.session
+Natsuki/*.session-journal
+Natsuki/config.ini
 log.txt
 *.pyc
 .idea/
@@ -16,7 +16,8 @@ start-3.6.bat
 kangsticker.png
 venv
 env
-saitama.session-journal
+.env
+*.session-journal
 updates.txt
 *.exe
 suzuyaPyro
