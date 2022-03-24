@@ -58,7 +58,7 @@ def addtag(update, context):
                         text="Accept", callback_data=f"tagall_accept={user_id}"
                     ),
                     InlineKeyboardButton(
-                        text="Decline", callback_data=f"tagall_dicline={user_id}"
+                        text="Decline", callback_data=f"tagall_decline={user_id}"
                     ),
                 ]
             ]
@@ -139,7 +139,7 @@ def tagg_all_button(update, context):
             context.bot.answer_callback_query(
                 query.id, text="You're not the user being added in tag list!"
             )
-    elif query_match == "tagall_dicline":
+    elif query_match == "tagall_decline":
         if query.from_user.id == int(user_id):
             member = chat.get_member(int(user_id))
             query.message.edit_text(
