@@ -848,11 +848,13 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
         else:
             updater.bot.set_webhook(url=URL + TOKEN)
-            client.run_until_disconnected()
+            telethn.run_until_disconnected()
+            
 
     else:
         LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, clean=True)
+        #change drop_pending_updates as oer your need in environments
+        updater.start_polling(timeout=15, read_latency=4, drop_pending_update=False)
 
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
