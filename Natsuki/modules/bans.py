@@ -14,6 +14,7 @@ from Natsuki import (
     TIGERS,
     WOLVES,
     dispatcher,
+    #BAN_STICKER
 )
 from Natsuki.modules.disable import DisableAbleCommandHandler
 from Natsuki.modules.helper_funcs.chat_status import (
