@@ -853,7 +853,7 @@ def main():
 
     else:
         LOGGER.info("Using long polling.")
-        #change drop_pending_updates as oer your need in environments
+        #change drop_pending_updates as per your need in environments
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=False)
 
     if len(argv) not in (1, 3, 4):
