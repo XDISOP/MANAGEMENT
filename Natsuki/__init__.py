@@ -105,6 +105,9 @@ if ENV:
     except ValueError:
         raise Exception("Your blacklisted chats list does not contain valid integers.")
 
+    if DB_URI.startswith("postgres://"):
+        DB_URI = DB_URI.replace("postgres://", "postgresql://")
+
 else:
     from Natsuki.config import Development as Config
 
@@ -174,6 +177,9 @@ else:
         BL_CHATS = set(int(x) for x in Config.WHITELIST_CHATS or [])
     except ValueError:
         raise Exception("Your whitelist chats list does not contain valid integers.")
+
+    if DB_URI.startswith("postgres://"):
+        DB_URI = DB_URI.replace("postgres://", "postgresql://")
 
 DRAGONS.add(OWNER_ID)
 DEV_USERS.add(OWNER_ID)

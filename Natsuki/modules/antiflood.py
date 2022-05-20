@@ -19,11 +19,11 @@ from Natsuki.modules.helper_funcs.alternate import send_message
 from Natsuki.modules.helper_funcs.chat_status import (
     bot_admin,
     is_user_admin,
-    user_admin,
     user_admin_no_reply,
 )
 from Natsuki.modules.helper_funcs.string_handling import extract_time
 from Natsuki.modules.log_channel import loggable
+from Natsuki.modules.helper_funcs.anonymous import user_admin, AdminPerms
 from Natsuki.modules.sql import antiflood_sql as sql
 
 FLOOD_GROUP = 3
@@ -136,7 +136,7 @@ def flood_button(update: Update, context: CallbackContext):
             pass
 
 
-@user_admin
+@user_admin(AdminPerms.CAN_RESTRICT_MEMBERS)
 @loggable
 def set_flood(update, context) -> str:
     chat = update.effective_chat  # type: Optional[Chat]
@@ -273,7 +273,7 @@ def flood(update, context):
             )
 
 
-@user_admin
+@user_admin(AdminPerms.CAN_RESTRICT_MEMBERS)
 def set_flood_mode(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
